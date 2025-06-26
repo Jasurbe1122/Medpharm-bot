@@ -2,9 +2,9 @@ from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes
 import os
 
-TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")  # Render'da Env Var sifatida beriladi
+# Renderda TOKEN ni Environment Variable orqali qo‘shasiz
+TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 
-# /start buyrug‘i
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Salom, qalaysiz? 😊")
 
