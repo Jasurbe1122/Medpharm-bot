@@ -4,7 +4,8 @@ from dotenv import load_dotenv
 import os
 import sqlite3
 from datetime import datetime
-import logging  # Xatolarni aniqlash uchun logging qo‘shildi
+import logging
+import asyncio
 
 # utils.py, ai_parser, pdf_utils modullarini import qilish
 try:
@@ -23,7 +24,7 @@ logger = logging.getLogger(__name__)
 load_dotenv()
 TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 if not TOKEN:
-    raise ValueError("TELEGRAM_BOT_TOKEN .env faylida topilmadi!")
+    raise ValueError("TELEGRAM_BOT_TOKEN topilmadi! .env faylini tekshiring.")
 
 # Ma'lumotlar bazasini yaratish
 def init_db():
@@ -113,5 +114,4 @@ async def main():
     await app.run_polling()
 
 if __name__ == '__main__':
-    import asyncio
     asyncio.run(main())
