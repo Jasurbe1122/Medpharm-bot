@@ -1,6 +1,6 @@
-
 from flask import Flask, request
-import telegram, os
+import telegram
+import os
 from ai_parser import parse_text
 from utils import save_expense, get_summary_text
 from pdf_utils import generate_pdf_report
@@ -14,11 +14,10 @@ app = Flask(__name__)
 @app.route(f"/{TOKEN}", methods=["POST"])
 def webhook():
     update = telegram.Update.de_json(request.get_json(force=True), bot)
-    chat_id = update.message.chat_id
+    chat_id = update.message.chat.id
 
     if update.message.text:
-        text = update.message.text
-        result = parse_text(text)
+        result = parse_text(update.message.text)
         save_expense(chat_id, result)
         bot.send_message(chat_id, f"✅ {result['name']} uchun {result['amount']} {result['unit']} saqlandi.")
     elif update.message.photo:
@@ -35,3 +34,7 @@ def webhook():
         bot.send_message(chat_id, f"🔊 Ovoz: {result['name']} uchun {result['amount']} {result['unit']} saqlandi.")
 
     return "ok"
+
+# ✅ MUHIM: Web serverni ishga tushurish uchun bu qator kerak
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
