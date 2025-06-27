@@ -20,21 +20,25 @@ def webhook():
         result = parse_text(update.message.text)
         save_expense(chat_id, result)
         bot.send_message(chat_id, f"✅ {result['name']} uchun {result['amount']} {result['unit']} saqlandi.")
+    
     elif update.message.photo:
         file = update.message.photo[-1].get_file()
-        text = extract_text_from_image(file.download())
+        image_path = file.download()
+        text = extract_text_from_image(image_path)
         result = parse_text(text)
         save_expense(chat_id, result)
         bot.send_message(chat_id, f"📸 Rasm: {result['name']} uchun {result['amount']} {result['unit']} saqlandi.")
+    
     elif update.message.voice:
         file = update.message.voice.get_file()
-        text = convert_voice_to_text(file.download())
+        voice_path = file.download()
+        text = convert_voice_to_text(voice_path)
         result = parse_text(text)
         save_expense(chat_id, result)
         bot.send_message(chat_id, f"🔊 Ovoz: {result['name']} uchun {result['amount']} {result['unit']} saqlandi.")
-
+    
     return "ok"
 
-# ✅ MUHIM: Web serverni ishga tushurish uchun bu qator kerak
+# ✅ Web serverni Render uchun port bilan ishga tushurish
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
