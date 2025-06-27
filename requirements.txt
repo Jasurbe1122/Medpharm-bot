@@ -1,7 +1,0 @@
-
-python-telegram-bot
-Flask
-pytesseract
-Pillow
-fpdf
-speechrecognition
