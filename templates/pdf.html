@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>PDF Yuk Hisobi</title>
+    <style>
+        body { font-family: sans-serif; }
+        h2 { text-align: center; }
+        table { width: 100%; border-collapse: collapse; }
+        td, th { border: 1px solid #333; padding: 5px; }
+    </style>
+</head>
+<body>
+    <h2>📄 Yuklar Hisobi (PDF)</h2>
+    <table>
+        <tr>
+            <th>ID</th><th>Yuk</th><th>Kimdan</th><th>Kimga</th><th>Manzil</th>
+            <th>Narx</th><th>Puli kimdan</th><th>Tel</th><th>Sana</th><th>Izoh</th>
+        </tr>
+        {% for yuk in yuklar %}
+        <tr>
+            <td>{{ yuk[0] }}</td>
+            <td>{{ yuk[1] }}</td>
+            <td>{{ yuk[2] }}</td>
+            <td>{{ yuk[3] }}</td>
+            <td>{{ yuk[4] }}</td>
+            <td>{{ yuk[5] }}</td>
+            <td>{{ yuk[6] }}</td>
+            <td>{{ yuk[7] }}</td>
+            <td>{{ yuk[8] }}</td>
+            <td>{{ yuk[9] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
