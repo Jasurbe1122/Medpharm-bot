@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Yuk Hisobi</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h2>📦 Yuklar ro‘yxati</h2>
+    <form method="post" action="/add">
+        <input name="yuk_nomi" placeholder="Yuk nomi" required>
+        <input name="kimdan" placeholder="Kimdan chiqdi" required>
+        <input name="kimga" placeholder="Kimga chiqdi" required>
+        <input name="manzil" placeholder="Qayerga" required>
+        <input name="narx" type="number" placeholder="Narxi (so'm)" required>
+        <input name="puli_kimdan" placeholder="Puli kimdan" required>
+        <input name="tel" placeholder="Telefon raqamlar" required>
+        <input name="izoh" placeholder="Izoh (ixtiyoriy)">
+        <button type="submit">➕ Qo‘shish</button>
+    </form>
+    <a class="pdf-btn" href="/pdf">📄 PDF yuklab olish</a>
+    <ul>
+        {% for yuk in yuklar %}
+        <li>
+            <b>{{ yuk[1] }}</b> – <strong>{{ yuk[2] }}</strong> dan chiqdi, <strong>{{ yuk[3] }}</strong>ga ({{ yuk[4] }}) – <b>{{ yuk[5] }} so‘m</b><br>
+            💵 Puli: {{ yuk[6] }} | 📞 Tel: {{ yuk[7] }} | 📅 Sana: {{ yuk[8] }} <br>
+            📝 {{ yuk[9] }}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
